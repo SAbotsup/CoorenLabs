@@ -1,5 +1,5 @@
 // maintainer - @binrot
-// currently supports `Primevid` and `Streamtape` Server, 
+// currently supports  `Primevid` and `Streamtape` Server, 
 //TODO add other server extractors
 
 import { Cache } from "../../core/cache";
@@ -48,7 +48,7 @@ export class Primesrc {
         try {
             const res = await fetch(url, { headers });
             if (!res.ok) {
-                Logger.info(await res.text())
+                console.log(await res.text())
                 Logger.error("[primesrc]", "fetch err: failed to get avaiable servers from api");
                 return;
             }
