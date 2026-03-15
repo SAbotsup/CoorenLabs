@@ -159,7 +159,7 @@ export const atsuRoutes = new Elysia({ prefix: "/atsu" })
       if (data.error) return err(set, 500, data.error);
       return ok(data);
     })
-    // ─── Re-mapped: Adult Author Route ───
+    // ─── Re-mapped: Adult Author Route / Working @Metahat───
     .get("/author/:slug", async ({ request, params, query, set }) => {
       const data = await atsu.fetchAuthor(params.slug, parseInt(query.page as string) || 0, query.type as string, getBaseUrl(request));
       if (data.error) return err(set, 500, data.error);
