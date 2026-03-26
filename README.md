@@ -1,74 +1,225 @@
-To install dependencies (install bun before that):
+# 🚀 Cooren API
+
+**Cooren is an open-source, high-performance, and scalable scraping engine designed to collect, organize, and deliver structured data from across the world of anime, movies, manga, and music — all in one unified ecosystem.**
+
+Developed and maintained by **[CoorenLabs](https://coorenlabs.com)**.
+
+---
+
+## 🔗 Quick Links
+
+* 🌐 **Main Website:** https://coorenlabs.com
+* 📘 **Official Documentation:** https://docs.coorenlabs.com
+
+---
+
+## ✨ Features
+
+* 🌍 **Unified Media Ecosystem**
+
+  * ⛩️ Anime Providers & Mappings
+  * 📖 Manga Providers (e.g., Mangaball, Atsu)
+  * 🍿 Movie & TV Providers
+  * 🎵 Music Providers
+  * ⚡ Direct Stream Providers
+
+* 🧩 **Open Source**
+  Fully open-source and community-driven.
+
+* ⚡ **High Performance**
+  Powered by **Bun** and **ElysiaJS** for blazing-fast execution.
+
+* 🧠 **Advanced Scraping**
+  Uses Cheerio, Puppeteer, and Axios for handling static + dynamic content.
+
+* 📄 **Built-in Swagger UI**
+  Auto-generated OpenAPI documentation.
+
+* 👨‍💻 **Developer Friendly**
+
+  * TypeScript support
+  * ESLint configured
+  * Modular provider architecture
+
+---
+
+## 🛠️ Tech Stack
+
+* ⚙️ **Runtime:** Bun
+* 🚀 **Framework:** ElysiaJS
+* 💻 **Language:** TypeScript
+* 🔍 **Scraping:** Cheerio, Puppeteer
+* 🗄️ **Database/Cache:** Upstash Redis
+* ✅ **Validation:** Zod
+
+---
+
+## 🚦 Getting Started
+
+### 📦 Prerequisites
+
+Make sure you have **Bun** installed:
+
+👉 https://bun.sh
+
+---
+
+### 📥 Installation
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/your-username/cooren-api.git
+cd cooren-api
 bun install
 ```
 
-To run:
+---
+
+### ▶️ Running the Server
+
+Start development server:
 
 ```bash
 bun run dev
 ```
 
-## src/core/
+With hot reload:
 
-This folder contains all kind of configuration and baisc util files.\
-**src/core/config.ts** \
-This file contains all api and server configs \
-**src/core/logger.ts** \
-Use `Logger` from this file everytime instead of `console.log`
-
-## src/providers/
-
-Contains each providers to be scraped/extracted data from
-each provider has (and should be) their own folders containing everything needed for scraping and extracting data, only except the origin imported from **src/providers/config.ts** \
-e.g. src/providers/animepahe/
-
-## src/providers/{name}
-
-- route.ts
-- {provderName}.ts
-- types.ts
-
-create as many files as u want but to keep it a standard make sure to have these 3 files atleast.
-
-Look at this example \
-**src/providers/flixhq/route.ts** which contains the routes for the provider prefix endpoints.
-
-```typescript
-import Elysia from "elysia";
-import { FlixHQ } from "./flixhq"; // provider class wrapper for organizing scraped data
-
-const flixhqRoutes = new Elysia({ prefix: "/flixhq" }) // should have a prefix
-  .get("/home", async () => {
-    const response = await FlixHQ.home();
-    return response;
-  })
-  .get(
-    "/search/:query",
-    async ({ params: { query } }) => {
-      const response = await FlixHQ.search(query);
-      return response;
-    },
-    // ... more routes
-  );
-
-export { flixhqRoutes }; // dont forget to export the handler
+```bash
+bun run hot
 ```
 
-**src/providers/flixhq/flixhq.ts** flixhq class for wrapping scraped/extracted data, make sure to keep the methods static for easy access like `FlixHQ.home()` bypassing the creation of an instance.
+---
 
-```typescript
+### 🏗️ Build for Production
+
+```bash
+bun run build:bun   # Optimized build for Bun
+bun run build:node  # Compile using TypeScript
+```
+
+---
+
+## 📚 API Documentation
+
+* 🌐 Online Docs: https://docs.coorenlabs.com
+* 🖥️ Local Docs:
+
+  ```
+  http://localhost:<PORT>/docs
+  ```
+
+---
+
+## 🏗️ Project Structure
+
+```
+src/
+├── core/
+│   ├── config.ts
+│   ├── logger.ts
+│   ├── proxyRoutes.ts
+│   └── mappingRoutes.ts
+│
+├── providers/
+│   └── (individual providers)
+```
+
+---
+
+## 🧩 Creating a New Provider
+
+Each provider should follow this structure:
+
+```
+src/providers/<provider-name>/
+├── route.ts
+├── <provider-name>.ts
+└── types.ts
+```
+
+---
+
+### 📌 Example: route.ts
+
+```ts
+import Elysia from "elysia";
+import { FlixHQ } from "./flixhq";
+
+export const flixhqRoutes = new Elysia({ prefix: "/flixhq" })
+  .get("/home", async () => {
+    return await FlixHQ.home();
+  })
+  .get("/search/:query", async ({ params: { query } }) => {
+    return await FlixHQ.search(query);
+  });
+```
+
+---
+
+### 📌 Example: Provider Logic
+
+```ts
 export class FlixHQ {
   static async home() {
-    // keep the methods static
-    return "GARBAGE";
+    // scraping logic
+    return data;
   }
+
   static async search(query: string) {
-    // keep the methods static
-    return "GARBAGE";
+    // search logic
+    return data;
   }
 }
 ```
 
-**src/providers/flixhq/types.ts** save all types e.g. response types or certain data types for easier usage and typesafety. (AI works good if u provide them types.ts btw)
+---
+
+### 📌 Example: types.ts
+
+```ts
+export interface FlixHQResponse {
+  title: string;
+  url: string;
+}
+```
+
+---
+
+## 🧪 Testing & Linting
+
+Run tests:
+
+```bash
+bun run test
+```
+
+Lint your code:
+
+```bash
+bun run lint
+bun run lint:fix
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repo, create a branch, and submit a PR.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## 💡 Maintained By
+
+**CoorenLabs**
+🌐 https://coorenlabs.com
+
+---
