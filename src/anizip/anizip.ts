@@ -58,7 +58,7 @@ export class AniZip {
         themoviedb_id: d.themoviedb_id ?? null,
       };
     } catch (_err) {
-      Logger.warn(`AniZip getMappings error: ${String(err)}`);
+      Logger.warn(`AniZip getMappings error: ${String(_err)}`);
       return null;
     }
   }
@@ -106,7 +106,7 @@ export class AniZip {
         images: d.images,
       };
     } catch (_err) {
-      Logger.warn(`AniZip getFullData error: ${String(err)}`);
+      Logger.warn(`AniZip getFullData error: ${String(_err)}`);
       return null;
     }
   }
@@ -117,7 +117,7 @@ export class AniZip {
       if (!full) return null;
       return Object.values(full.episodes);
     } catch (_err) {
-      Logger.warn(`AniZip getEpisodes error: ${String(err)}`);
+      Logger.warn(`AniZip getEpisodes error: ${String(_err)}`);
       return null;
     }
   }

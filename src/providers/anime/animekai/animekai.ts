@@ -90,7 +90,7 @@ export class AnimeKai {
         results,
       };
     } catch (_err) {
-      Logger.error(`AnimeKai scrapeCardPage error for ${url}: ${String(err)}`);
+      Logger.error(`AnimeKai scrapeCardPage error for ${url}: ${String(_err)}`);
       return { currentPage: 0, hasNextPage: false, totalPages: 0, results: [] };
     }
   }
@@ -180,7 +180,7 @@ export class AnimeKai {
         });
       return results;
     } catch (_err) {
-      Logger.error(`AnimeKai genres error: ${String(err)}`);
+      Logger.error(`AnimeKai genres error: ${String(_err)}`);
       return [];
     }
   }
@@ -212,7 +212,7 @@ export class AnimeKai {
       });
       return results;
     } catch (_err) {
-      Logger.error(`AnimeKai schedule error: ${String(err)}`);
+      Logger.error(`AnimeKai schedule error: ${String(_err)}`);
       return [];
     }
   }
@@ -264,7 +264,7 @@ export class AnimeKai {
       });
       return results;
     } catch (_err) {
-      Logger.error(`AnimeKai spotlight error: ${String(err)}`);
+      Logger.error(`AnimeKai spotlight error: ${String(_err)}`);
       return [];
     }
   }
@@ -299,7 +299,7 @@ export class AnimeKai {
       });
       return results;
     } catch (_err) {
-      Logger.error(`AnimeKai suggestions error: ${String(err)}`);
+      Logger.error(`AnimeKai suggestions error: ${String(_err)}`);
       return [];
     }
   }
@@ -475,7 +475,7 @@ export class AnimeKai {
 
       return info;
     } catch (_err) {
-      Logger.error(`AnimeKai info error: ${String(err)}`);
+      Logger.error(`AnimeKai info error: ${String(_err)}`);
       return null;
     }
   }
@@ -532,7 +532,7 @@ export class AnimeKai {
 
       return servers;
     } catch (_err) {
-      Logger.error(`AnimeKai fetchEpisodeServers error: ${String(err)}`);
+      Logger.error(`AnimeKai fetchEpisodeServers error: ${String(_err)}`);
       return [];
     }
   }
@@ -595,7 +595,7 @@ export class AnimeKai {
 
       return results;
     } catch (_err) {
-      Logger.error(`AnimeKai streams error: ${String(err)}`);
+      Logger.error(`AnimeKai streams error: ${String(_err)}`);
       return [];
     }
   }
@@ -617,7 +617,7 @@ export class AnimeKai {
       const episode = info.episodes.find((ep: AnimeKaiEpisode) => ep.number === episodeNumber);
       return episode ? episode.id : null;
     } catch (_err) {
-      Logger.error(`AnimeKai getEpisodeSession error: ${String(err)}`);
+      Logger.error(`AnimeKai getEpisodeSession error: ${String(_err)}`);
       return null;
     }
   }
@@ -654,7 +654,7 @@ export class AnimeKai {
         name: info.title,
       };
     } catch (_err) {
-      Logger.error(`AnimeKai getMappingsAndName error: ${String(err)}`);
+      Logger.error(`AnimeKai getMappingsAndName error: ${String(_err)}`);
       return null;
     }
   }

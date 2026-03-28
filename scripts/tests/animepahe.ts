@@ -1,4 +1,4 @@
-const BASE_URL = process.env.API_BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.API_BASE_URL || process.env.SERVER_ORIGIN || "http://localhost:3000";
 const PROVIDER = "animepahe";
 
 interface TestResult {
