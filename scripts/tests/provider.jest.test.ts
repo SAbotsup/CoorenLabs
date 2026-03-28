@@ -1,3 +1,4 @@
+import { describe, it, beforeAll, expect } from "@jest/globals";
 import { runAnimePaheTests } from "./animepahe";
 import { runMangaballTests } from "./mangaball";
 import { createApp } from "../../src/app";

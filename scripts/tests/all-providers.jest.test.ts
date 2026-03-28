@@ -1,3 +1,4 @@
+import { jest, describe, it, expect, beforeAll } from "@jest/globals";
 
 // ─── 1. REGISTER ALL MOCKS FIRST (BEFORE ANY REQUIRES) ─────────────────────────
 
@@ -31,10 +32,6 @@ const { MOCK_DATA } = require("../../tests/mocks/providers");
 
 // ─── 3. TEST SUITE ────────────────────────────────────────────────────────────
 
-import { describe, it, expect, beforeAll } from "@jest/globals";
-import { createApp } from "../../src/app";
-import { mockProviders } from "../../tests/mocks/providers";
-
 describe("Unified Provider Mock Tests (Jest - Full Coverage)", () => {
     let app: any;
 
@@ -44,7 +41,7 @@ describe("Unified Provider Mock Tests (Jest - Full Coverage)", () => {
         app = await createApp();
     });
 
-    const testGet = async (path) => {
+    const testGet = async (path: string) => {
         const req = new Request(`http://localhost${path}`);
         const res = await app.handle(req);
         if (res.status !== 200) {

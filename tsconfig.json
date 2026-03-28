@@ -19,10 +19,15 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": false,
     "noImplicitOverride": true,
-    "types": []
+    "types": [
+      "jest",
+      "bun"
+    ]
   },
   "include": [
     "src/**/*",
+    "scripts/**/*",
+    "tests/**/*",
     "old/cf-bypass-old-buggy.ts"
   ]
 }
